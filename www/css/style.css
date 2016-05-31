@@ -1,0 +1,16 @@
+/* Empty. Add your own CSS if you like */
+.platform-android .bar-header {
+
+}
+
+.padding {
+    padding: 10px 15px 20px 15px;
+}
+
+.card {
+    margin-top: 5px;
+}
+
+.task-card-header {
+    background-color: #f2f2f2;
+}

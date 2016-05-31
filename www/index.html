@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Minder for Mobile</title>
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="minder">
+
+         <!-- Creating the consistent header -->
+        <ion-nav-bar class="bar-positive" align-title="center">
+        </ion-nav-bar>
+
+        <!-- Main naviagtion view -->
+        <ion-nav-view></ion-nav-view>
+
+        <!-- Menu template -->
+        <script id="templates/tabs.html" type="text/ng-template">
+            <ion-view>
+                <ion-tabs class="tabs-icon-top tabs-positive">
+                    <!-- Ion tabs -->
+                    <ion-tab title="Refresh Tasks" icon="ion-refresh" ngclick="getTasks()"></ion-tab>
+                    <ion-tab title="Logout" icon="ion-logout" ngclick="logout()"></ion-tab>
+                </ion-tabs>
+            </ion-view>
+        </script>
+
+        <!-- Login page template -->
+        <script id="templates/login.html" type="text/ng-template">
+            <ion-view view-title="Login">
+                <ion-content class="padding" style="padding: 2.5em;">
+
+                    <div class="login_container">
+                        <h1 class="text-center">Minder</h1>
+                        <div class="list list-inset" style="margin-top: 2em;">
+                            <label class="item item-input">
+                                <input type="text" placeholder="Email" ng-model="logindata.email">
+                            </label>
+                            <label class="item item-input">
+                                <input type="password" placeholder="Password" ng-model="logindata.password">
+                            </label>
+                            <!-- Submit button -->
+                            <div style="margin-top: 2em;" class="text-center">
+                                <button class="button button-block button-assertive" ng-click="login(logindata)">Login</button>
+                                <button class="button button-clear button-positive" ng-click="login(logindata)">Register</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </ion-content>
+            </ion-view>
+        </script>
+
+        <!-- Task dashboard page -->
+        <script id="templates/task_dash.html" type="text/ng-template">
+            <ion-view view-title="My Tasks">
+                <ion-content padding="true">
+                    <ion-refresher pulling-text="Release to get tasks" on-refresh="getTasks()">
+                    </ion-refresher>
+                    <div class="list card" ng-repeat="task in tasks">
+                        <div class="item" class="task-card-header" style="background-color: #f2f2f2;">
+                            <div class="row" style="padding: 0px;">
+                                <div class="col" style="padding: 0px;">
+                                    <h2>{{ task.task_name }}</h2>
+                                    <p>{{ task.class_name }}</p>
+                                </div>
+                                <div class="col" style="padding: 0px; text-align: right;">
+                                    <p>11th May, 2016</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item item-body">
+                            <p style="margin-top: 0px;">{{ task.task_desc }}</p>
+                        </div>
+                    </div>
+                </ion-content>
+                <ion-footer-bar align-title="left" class="bar-assertive" ng-controller="menuCtrl">
+                    <div class="buttons" ng-click="logout()">
+                        <button class="button">Logout</button>
+                    </div>
+                </ion-footer-bar>
+            </ion-view>
+        </script>
+
+  </body>
+</html>
