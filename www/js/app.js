@@ -63,8 +63,6 @@ angular.module('minder', ['ionic'])
 
 .controller('taskCtrl', function($scope, auth, tasks, $ionicLoading) {
 
-    auth.checkAuth()
-
     $scope.getTasks = function() {
         $ionicLoading.show({
             template: "Getting tasks..."
@@ -73,16 +71,18 @@ angular.module('minder', ['ionic'])
         .then(function(tasks) {
             $scope.tasks = tasks;
         })
-        .done(function() {
+        .then(function() {
             $ionicLoading.hide();
         })
         $scope.$broadcast('scroll.refreshComplete');
     }
 
     // Waiting for the view to load
-    $scope.on('$ionicView.loaded', function() {
+    auth.checkAuth()
+    .then(function() {
         $scope.getTasks();
-    });
+    })
+
 })
 
 .controller('loginCtrl', function($scope, loginServ, auth, redirect) {

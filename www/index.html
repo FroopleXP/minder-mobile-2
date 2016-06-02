@@ -46,7 +46,7 @@
                             </label>
                             <!-- Submit button -->
                             <div style="margin-top: 2em;" class="text-center">
-                                <button class="button button-block button-assertive" ng-click="login(logindata)">Login</button>
+                                <button class="button button-block login-button" ng-click="login(logindata)">Login</button>
                                 <button class="button button-clear button-positive" ng-click="login(logindata)">Register</button>
                             </div>
                         </div>
@@ -79,10 +79,8 @@
                         </div>
                     </div>
                 </ion-content>
-                <ion-footer-bar align-title="left" class="bar-assertive" ng-controller="menuCtrl">
-                    <div class="buttons" ng-click="logout()">
-                        <button class="button">Logout</button>
-                    </div>
+                <ion-footer-bar align-title="right" class="footer" ng-controller="menuCtrl">
+                    <button class="logout-button" ng-click="logout()">+</button>
                 </ion-footer-bar>
             </ion-view>
         </script>
