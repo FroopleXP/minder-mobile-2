@@ -106,16 +106,21 @@ angular.module('minder', ['ionic'])
 })
 
 // loginServ
-.factory('loginServ', function($q, $http, redirect, $ionicPopup, tokenServ) {
+.factory('loginServ', function($q, $http, redirect, $ionicPopup, tokenServ, $ionicLoading) {
     return {
         login: function(login) {
+            $ionicLoading.show({
+                template: "Logging in..."
+            });
             $http.post("http://client.minder.noval-technologies.uk/api/auth", login)
             .then(function(response){
                 tokenServ.setToken(response.data.token)
                 .then(function() {
+                    $ionicLoading.hide();
                     redirect.go('task_dash');
                 })
                 .catch(function(err) {
+                    $ionicLoading.hide();
                     $ionicPopup.alert({
                         title: "Failed to login!",
                         template: err
@@ -123,11 +128,13 @@ angular.module('minder', ['ionic'])
                 })
             })
             .catch(function(err) {
+                $ionicLoading.hide();
                 $ionicPopup.alert({
                     title: "Failed to login!",
                     template: err.message
                 })
             })
+            return q.promise;
         },
         logout: function() {
             // Logging the user out
