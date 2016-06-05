@@ -10,7 +10,7 @@
     <script src="cordova.js"></script>
     <script src="js/app.js"></script>
   </head>
-  <body ng-app="minder">
+  <body ng-app="minder" class="main_body">
 
          <!-- Creating the consistent header -->
         <ion-nav-bar class="bar-positive" align-title="center">
@@ -34,24 +34,28 @@
         <script id="templates/login.html" type="text/ng-template">
             <ion-view view-title="Login">
                 <ion-content class="padding" style="padding: 2.5em;">
-
                     <div class="login_container">
-                        <h1 class="text-center">Minder</h1>
-                        <div class="list list-inset" style="margin-top: 2em;">
+                        <img class="logo" src="../img/logo.png">
+                        <div class="list list-inset login_list" style="margin-top: 2em; border-radius: 5px; border-bottom-radius: 3px;">
                             <label class="item item-input">
                                 <input type="text" placeholder="Email" ng-model="logindata.email">
                             </label>
                             <label class="item item-input">
                                 <input type="password" placeholder="Password" ng-model="logindata.password">
                             </label>
-                            <!-- Submit button -->
-                            <div style="margin-top: 2em;" class="text-center">
-                                <button class="button button-block login-button" ng-click="login(logindata)">Login</button>
-                                <button class="button button-clear button-positive" ng-click="login(logindata)">Register</button>
-                            </div>
+                        </div>
+                        <!-- Submit button -->
+                        <div style="margin-top: 2em;" class="text-center">
+                            <button class="button button-block login-button" ng-click="login(logindata)">Login</button>
+                            <p>or</p>
+                            <button class="button button-block register-button" onclick="window.open('http://client.minder.noval-technologies.uk/register', '_system', 'location=no')">
+                                Register
+                            </button>
+                        </div>
+                        <div class="footer">
+                            <p class="text-center">Written &amp; Developed by <a href="" style="text-decoration: none;" onclick="window.open('https://twitter.com/4v3ng3dFoREVer', '_system', 'location=no')">Connor Edwards</a></p>
                         </div>
                     </div>
-
                 </ion-content>
             </ion-view>
         </script>

@@ -134,7 +134,6 @@ angular.module('minder', ['ionic'])
                     template: err.message
                 })
             })
-            return q.promise;
         },
         logout: function() {
             // Logging the user out
